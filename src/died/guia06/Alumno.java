@@ -10,6 +10,11 @@ public class Alumno implements Comparable{
 	private List<Curso> cursando;
 	private List<Curso> aprobados;
 
+	public Alumno(String n, int i) {
+		this.nombre=n;
+		this.nroLibreta=i;
+	}
+
 	public int creditosObtenidos() { //suma de los créditos que otorgan los cursos que ya aprobó
 		int retorno=0;
 		for (Curso c : this.aprobados) {
