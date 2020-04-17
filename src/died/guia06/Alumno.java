@@ -10,16 +10,21 @@ public class Alumno implements Comparable{
 	private List<Curso> cursando;
 	private List<Curso> aprobados;
 
-	public int creditosObtenidos() {
-		return 1;
+	public int creditosObtenidos() { //suma de los créditos que otorgan los cursos que ya aprobó
+		int retorno=0;
+		for (Curso c : this.aprobados) {
+			retorno += c.getCreditos();
+		}
+		return retorno;
 	}
 
 	public void aprobar(Curso c) {
-		//
+		this.cursando.remove(this.cursando.indexOf(c)); // saco el curso de la lista de cursando 
+		this.aprobados.add(c);
 	}
 
 	public void inscripcionAceptada(Curso c) {
-		//
+		this.cursando.add(c);
 	}
 		
 	
