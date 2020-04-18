@@ -2,6 +2,9 @@ package died.guia06;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import died.guia06.util.Registro;
@@ -127,20 +130,39 @@ public class Curso {
 	 * @return
 	 */
 	public Boolean inscribir(Alumno a) {
-		try {
-			log.registrar(this, "inscribir ",a.toString());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return false;
+		
+		if (a.creditosObtenidos()>= this.creditosRequeridos) {//Verifico que tenga los creditos necesarios 
+			if (this.inscriptos.size()<this.cupo) { //verifico si quedan cupos disponibles 
+				if ((a.getCursando()).size()<3) { //verifico que no esté inscripto al menos en 3 cursos
+					try {
+						log.registrar(this, "inscribir ",a.toString());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					this.inscriptos.add(a);
+					a.agregarCurso(this);
+					return true;
+				} else return false;
+			} else return false;
+			
+		} else return false;
+		
+		
 	}
 	
 	
 	/**
 	 * imprime los inscriptos en orden alfabetico
 	 */
-	public void imprimirInscriptos() {
+	public void imprimirInscriptosPorNombre() {
+		List<Alumno> lista = this.inscriptos;
+		Collections.sort(lista, Alumno.Comparators.NOMBRE);
+		
+		for (Alumno a: lista) {
+			System.out.println(a.getNombre());
+		}
+		
 		try {
 			log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
 		} catch (IOException e) {
@@ -148,6 +170,40 @@ public class Curso {
 			e.printStackTrace();
 		}
 	}
+	
+	public void imprimirInscriptosPorLibreta() {
+		List<Alumno> lista = this.inscriptos;
+		Collections.sort(lista, Alumno.Comparators.LIBRETA);
+		
+		for (Alumno a: lista) {
+			System.out.println(a.getNroLibreta());
+		}
+		try {
+			log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void imprimirInscriptosPorCreditos() {
+		List<Alumno> lista = this.inscriptos;
+		Collections.sort(lista, Alumno.Comparators.CREDITOS);
+		
+		for (Alumno a: lista) {
+			System.out.println(a.creditosObtenidos());
+		}
+		try {
+			log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 
+	
+	
+	
 
 }

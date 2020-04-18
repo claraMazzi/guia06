@@ -1,9 +1,10 @@
 package died.guia06;
 
+import java.util.Comparator;
 import java.util.List;
 
 
-public class Alumno implements Comparable{
+public class Alumno implements Comparable<Alumno>{
 
 	private String nombre;
 	private Integer nroLibreta;
@@ -13,6 +14,11 @@ public class Alumno implements Comparable{
 	public Alumno(String n, int i) {
 		this.nombre=n;
 		this.nroLibreta=i;
+	}
+
+	public Alumno() {
+		this.nombre=null;
+		this.nroLibreta=null;
 	}
 
 	public int creditosObtenidos() { //suma de los créditos que otorgan los cursos que ya aprobó
@@ -56,6 +62,10 @@ public class Alumno implements Comparable{
 	public void setCursando(List<Curso> cursando) {
 		this.cursando = cursando;
 	}
+	
+	public void agregarCurso (Curso c) {
+		this.cursando.add(c);
+	}
 
 	public List<Curso> getAprobados() {
 		return aprobados;
@@ -76,22 +86,19 @@ public class Alumno implements Comparable{
 	}
 	
 
-	public int compareTo(Object arg0) {
-		int retorno=3; 
-		if(arg0 instanceof Alumno) {
-			
-			if(this.nombre.compareTo(((Alumno) arg0).getNombre())==0 ) {
-				retorno = 0;
-			}
-			else if(this.nombre.compareTo(((Alumno) arg0).getNombre())>0) {
-				retorno = 1;
-			} else {
-				retorno=-1;
-			}
-		}
-		return retorno;
+	public int compareTo(Alumno arg0) {
+		
+		return Comparators.NOMBRE.compare(this, arg0);
 	}
-	
+
+	public static class Comparators {
+		public static final Comparator<Alumno> NOMBRE = (Alumno a1, Alumno a2) -> a1.nombre.compareTo(a2.nombre);
+		public static final Comparator<Alumno> LIBRETA = (Alumno a1, Alumno a2) -> a1.nroLibreta.compareTo(a2.nroLibreta);
+		public static final Comparator<Alumno> CREDITOS = (Alumno a1, Alumno a2)-> Integer.compare(a1.creditosObtenidos(), a2.creditosObtenidos());
+				
+			
+	}
+
 	
 
 }
