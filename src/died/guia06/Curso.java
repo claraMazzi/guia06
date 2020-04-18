@@ -169,7 +169,7 @@ public class Curso {
 	public void imprimirInscriptosPorNombre() {
 		List<Alumno> lista = this.inscriptos;
 		Collections.sort(lista, Alumno.Comparators.NOMBRE);
-		
+		System.out.println("alumnos por orden alfabetico: \n");
 		for (Alumno a: lista) {
 			System.out.println(a.getNombre());
 		}
@@ -185,9 +185,9 @@ public class Curso {
 	public void imprimirInscriptosPorLibreta() {
 		List<Alumno> lista = this.inscriptos;
 		Collections.sort(lista, Alumno.Comparators.LIBRETA);
-		
+		System.out.println("alumnos ordenados por n° de libreta \n");
 		for (Alumno a: lista) {
-			System.out.println(a.getNroLibreta());
+			System.out.println(a.getNroLibreta() + " " + a.getNombre() + "\n");
 		}
 		try {
 			log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
@@ -200,9 +200,9 @@ public class Curso {
 	public void imprimirInscriptosPorCreditos() {
 		List<Alumno> lista = this.inscriptos;
 		Collections.sort(lista, Alumno.Comparators.CREDITOS);
-		
+		System.out.println("alumnos ordenados por creditos obtenidos \n");
 		for (Alumno a: lista) {
-			System.out.println(a.creditosObtenidos());
+			System.out.println(a.creditosObtenidos() + " " + a.getNombre()+ "\n");
 		}
 		try {
 			log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");

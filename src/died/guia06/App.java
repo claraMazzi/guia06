@@ -15,53 +15,53 @@ public class App {
 		Curso c3 = new Curso(3, "Economia", 2019, 3, 6, 3);   // 3 cupos
 		Curso c4 = new Curso(4, "Legislacion", 2019, 2, 6, 4); // 2 cupos
 		Curso c5 = new Curso(5, "Algoritmos", 2019, 2, 5,1); //2 cupos 
-		Curso c6 = new Curso(6, "AMI", 2019, 2, 1, 0);
+		Curso c6 = new Curso(6, "AMI", 2019, 2, 3, 0);
+		Curso c7 = new Curso(7, "AGA", 2019, 2, 3, 0);
+		Curso c8 = new Curso(8, "FISICA", 2019, 3, 3, 0);
 		
 		Alumno a1 = new Alumno("Pedro", 2);
-		List<Curso> cursando1 = new ArrayList<Curso>();
 		List<Curso> aprobados1 = new ArrayList<Curso>();
-		cursando1.add(c3);
-		cursando1.add(c6);
 		aprobados1.add(c4);
 		aprobados1.add(c5);
-		a1.setCursando(cursando1);
 		a1.setAprobados(aprobados1);
+		c1.inscribir(a1);
+		c3.inscribir(a1);
+		c6.inscribir(a1);
 		
+		System.out.println("creditos obtenidos por alumno Pedro NL:2 : " + a1.creditosObtenidos());
 		
 		Alumno a2= new Alumno("Pablo", 3);
-		List<Curso> cursando2 = new ArrayList<Curso>();
 		List<Curso> aprobados2 = new ArrayList<Curso>();
-		cursando2.add(c2);
-		cursando2.add(c3);
-		cursando2.add(c4);
-		aprobados2.add(c5);		
+		aprobados2.add(c5);
+		c6.inscribir(a2);
+		c7.inscribir(a2);
+		c8.inscribir(a2);
 		
-		//alumno que le faltan creditos
 		Alumno a3 = new Alumno ("Julia", 4);
 		List<Curso> aprobados3 = new ArrayList<Curso>();
 		aprobados3.add(c6);
+		c7.inscribir(a3);
+		c8.inscribir(a3);
 		
 		Alumno a4 = new Alumno("Maria", 5);
-		List<Curso> cursando4 = new ArrayList<Curso>();
 		List<Curso> aprobados4 = new ArrayList<Curso>();
-		cursando4.add(c3);
-		cursando4.add(c6);
 		aprobados4.add(c4);
 		aprobados4.add(c5);
-		a1.setCursando(cursando4);
 		a1.setAprobados(aprobados4);
-
+		c1.inscribir(a4);
+		c7.inscribir(a4);
+		c8.inscribir(a4);	
 		
-		//alumno que cumple los requisitos y no hay cupo 
-		Alumno a5 = new Alumno("Clara", 6);
-		List<Curso> cursando5 = new ArrayList<Curso>();
-		List<Curso> aprobados5 = new ArrayList<Curso>();
-		cursando5.add(c3);
-		cursando5.add(c6);
-		aprobados5.add(c4);
-		aprobados5.add(c5);
-		a1.setCursando(cursando5);
-		a1.setAprobados(aprobados5);
+		System.out.println("Creditos obtenidos por el alumno Pablo, NL:3 :" + a2.creditosObtenidos());
+		
+		a1.aprobar(c1);
+		a1.aprobar(c3);
+		a2.aprobar(c6);
+		a2.aprobar(c7);
+		
+		c6.imprimirInscriptosPorNombre();
+		c1.imprimirInscriptosPorLibreta();
+		c7.imprimirInscriptosPorCreditos();
 		
 		
 	}
