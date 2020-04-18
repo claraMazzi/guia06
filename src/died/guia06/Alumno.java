@@ -1,5 +1,6 @@
 package died.guia06;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -14,6 +15,8 @@ public class Alumno implements Comparable<Alumno>{
 	public Alumno(String n, int i) {
 		this.nombre=n;
 		this.nroLibreta=i;
+		this.cursando = new ArrayList<Curso>();
+		this.aprobados = new ArrayList<Curso>();
 	}
 
 	public Alumno() {
