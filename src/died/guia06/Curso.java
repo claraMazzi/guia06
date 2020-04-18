@@ -213,7 +213,36 @@ public class Curso {
 	}
 	
 
+	/*
+	 * Agregar a curso el método
+		- public void inscribirAlumno(Alumno a) { … }
+		Este método ejecutará correctamente si el alumno se pudo inscribir. Caso contrario lanzará una excepción personalizada para cada una de las siguientes situaciones:
+			- Una excepción si el alumno no tiene los creditos requeridos
+			- Una excepción que represente que el curso tiene el cupo cubierto
+			- Una excepción que represente que el alumno ya tiene todas las materias de cursado regular.
+			- Además este método debe capturar la excepción de entrada salida de la clase registro y en caso de que ocurra relanzarla como una nueva excepción del tipo personalizado “RegistroAuditoriaException”
+	 */
 	
+public void inscribirAlumno(Alumno a) throws Exception {
+		
+		if (a.creditosObtenidos()< this.creditosRequeridos) {//Verifico que no tenga los creditos necesarios 
+			throw new creditosIncecesarios("CREDITOS INECESARIOS");
+		} else if (this.inscriptos.size()>this.cupo) { //verifico si quedan cupos disponibles 
+					throw new NoHayCuposDisponibles("NO HAY CUPOS DISPONIBLES");
+				}
+				else if ((a.getCursando()).size()>=3) { //verifico que no esté inscripto al menos en 3 cursos
+			throw new InscriptoEnMasDe3Cursos("ALUMNO INSCRIPTO EN MAS DE 3 CURSOS");
+				} else this.inscribir(a);
+					
+		try {
+		log.registrar(this, "inscribir ",a.toString());
+		} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		}
+		this.inscriptos.add(a);
+		a.agregarCurso(this);	
+	}
 	
 	
 
