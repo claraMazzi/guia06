@@ -239,6 +239,7 @@ public void inscribirAlumno(Alumno a) throws Exception {
 		} catch (IOException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
+		throw new RegistroAuditoriaException();
 		}
 		this.inscriptos.add(a);
 		a.agregarCurso(this);	
