@@ -63,6 +63,28 @@ public class App {
 		c1.imprimirInscriptosPorLibreta();
 		c7.imprimirInscriptosPorCreditos();
 		
+		Alumno a5 = new Alumno("Clara", 6);
+		
+		try {
+		c6.inscribirAlumno(a5);
+		
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+		
+		try {
+			c7.inscribirAlumno(a1);
+			
+		}
+		catch(Exception e) {
+				e.printStackTrace();
+				System.out.println(e.getMessage());
+		}
+		
+		
+		
 		
 	}
 }
